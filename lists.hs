@@ -104,6 +104,14 @@ rotate arr n = drop (((length  arr) + n) `mod` (length arr)) arr ++ take (((leng
 removeAt :: [a] -> Int -> [a]
 removeAt arr n = take (n-1) arr ++ drop n arr
 
+insertAt :: a -> [a] -> Int -> [a]
+insertAt e arr n = (take (n-1) arr) ++ [e] ++ (drop (n-1) arr)
+
+range :: Int -> Int -> [Int]
+range x y
+  | x < y = [x] ++ range (x+1) y
+  | otherwise = [y]
+
 main = do
   putStrLn [myLast "ABCD"]
   putStrLn (butLast "ABCD")
@@ -142,3 +150,7 @@ main = do
   print ( rotate "abcdefgh" (-2))
 
   print ( removeAt "abcd" 2)
+
+  print ( insertAt 'X' "abcd" 2)
+
+  print ( range 3 15)
